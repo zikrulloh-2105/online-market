@@ -24,7 +24,6 @@ async function createProductsModel(body, files, token) {
 
 async function updateProductsModel(body, files, params) {
   const { product_name, product_price, product_quantity } = body
-  const { product_img } = files
 
   const checkProduct = await uniqRow('select * from products where product_id = $1', params.product_id)
   if (!checkProduct.rows.length) {
@@ -41,6 +40,7 @@ async function updateProductsModel(body, files, params) {
   let img = checkProduct.rows[0].product_img
 
   if (files) {
+    const { product_img } = files
     const filePath = path.join(__dirname, './../../../uploads/', checkProduct.rows[0].product_img)
     const checkFilesIfExists = fs.existsSync(filePath)
     if (checkFilesIfExists) {

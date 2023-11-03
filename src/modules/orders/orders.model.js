@@ -78,7 +78,7 @@ async function createOrderModel(body, token) {
             return {
                 action: true,
                 status: 404,
-                message: "Maxsulot IDsi noto'g'ri formatda!"
+                message: `Maxsulot IDsi noto'g'ri formatda! product → ${product}`
             }
         }
         const checkProductsExists = await uniqRow('select product_id from products where product_id = $1', product)
@@ -126,7 +126,7 @@ async function updateOrderModel(body, params, token) {
             return {
                 action: true,
                 status: 404,
-                message: "Maxsulot IDsi noto'g'ri formatda!"
+                message: `Maxsulot IDsi noto'g'ri formatda! product → ${product}`
             }
         }
         const checkProduct = await uniqRow('select * from products where product_id = $1', product)
@@ -166,7 +166,7 @@ async function updateOrderAdminModel(body, params, token) {
             return {
                 action: true,
                 status: 404,
-                message: "Maxsulot IDsi noto'g'ri formatda!"
+                message: `Maxsulot IDsi noto'g'ri formatda! product → ${product}`
             }
         }
         const checkProduct = await uniqRow('select * from products where product_id = $1', product)
